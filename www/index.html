@@ -18,17 +18,21 @@
       </tr>
     </table>
 
+    <script src="js/lib/LinkedList.js"></script>
+
     <script src="js/util/BoundsUtil.js"></script>
     <script src="js/util/TimeUtil.js"></script>
 
     <script src="js/crono.js"></script>
+    <script src="js/timelist.js"></script>
 
     <script>
     window.onload = function() {
-      console.log("tick");
+      timelist.init();
+      
       document.addEventListener("keydown", onKeyDown);
       document.addEventListener("keyup", onKeyUp);
-      
+
       requestAnimationFrame(run);
     }
 
@@ -39,13 +43,25 @@
 
     function update() {
       crono.update();
-      document.getElementById("time").innerHtml = crono.getTime(true);
+      document.getElementById("time").innerHTML = crono.getTime(true);
+    }
+
+    function updateTimeList() {
+      var _tl = document.getElementById("timelist");
+      _tl.innerHTML = "Times: "
+      for(var i = 0; i < timelist.list.size(); i++) {
+        _tl.innerHTML += TimeUtil.timeToString(TimeUtil.intToTime(timelist.get(i))) + ", ";
+      }
     }
 
     function onKeyDown(e) {
       var code = e.keyCode;
-      if(code = 32 && crono.timeing) {
-        crono.stopTime();
+      if(code = 32) {
+        if(crono.timeing) {
+          crono.stopTime();
+        } else {
+          crono.timeColor = "lime";
+        }
       }
     }
 

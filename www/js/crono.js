@@ -9,8 +9,9 @@ var crono = {
   timeColor: "black",
 
   update: function() {
-    if(this.timeing) this.time++;
+    document.getElementById("time").style.color = this.timeColor;
 
+    if(this.timeing) this.time++;
     if(this.delaying && !this.timeing) {
       this.delay--;
 
@@ -36,9 +37,11 @@ var crono = {
       this.timeing = false;
       this.canStart = false;
       this.timeColor = "black";
-//      timelist.addTime(this.time);
+      timelist.add(this.time);
+      timelist.save();
 
       this.delaying = true;
+      updateTimeList();
     }
   },
 
@@ -51,7 +54,7 @@ var crono = {
 
   getTime: function(str) {
     var t = this.time;
-    if (str) t = TimeUtil.intToTime(time);
+    if (str) t = TimeUtil.timeToString(TimeUtil.intToTime(this.time));
 
     return t;
   }
