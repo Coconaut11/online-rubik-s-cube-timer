@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+#scramble {
+  background-color: #aaaaaa;
+  border-style: solid;
+  width: 75%;
+}
+
+#timelist {
+  background-color: #aaaaaa;
+  border-style: solid;
+  width: 20%;
+  height: 100px;
+}
+
+#crono {
+  background-color: #aaaaaa;
+  border-style: solid;
+}
+
+#time {
+  font-size: 50px;
+}

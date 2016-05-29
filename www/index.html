@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SCTimer - Online Rubik's Cube Timer</title>
+    <link rel="stylesheet" type"text/css" href="css/style.css"/>
+  </head>
+  <body>
+    <center><div id="scramble"><strong>F' F' F' F' F' F' F'</strong></div></center>
+    <table>
+      <tr>
+        <td id="timelist">
+          Times: <br/>
+        </td>
+        <td id="crono">
+          <center> <span id="time">0.00</span></center>
+        </td>
+      </tr>
+    </table>
+
+    <script src="js/util/BoundsUtil.js"></script>
+    <script src="js/util/TimeUtil.js"></script>
+
+    <script src="js/crono.js"></script>
+
+    <script>
+    window.onload = function() {
+      console.log("tick");
+      document.addEventListener("keydown", onKeyDown);
+      document.addEventListener("keyup", onKeyUp);
+      
+      requestAnimationFrame(run);
+    }
+
+    function run() {
+      update();
+      requestAnimationFrame(run);
+    }
+
+    function update() {
+      crono.update();
+      document.getElementById("time").innerHtml = crono.getTime(true);
+    }
+
+    function onKeyDown(e) {
+      var code = e.keyCode;
+      if(code = 32 && crono.timeing) {
+        crono.stopTime();
+      }
+    }
+
+    function onKeyUp(e) {
+      var code = e.keyCode;
+      if(code == 32) {
+        crono.startTime();
+      }
+    }
+
+    </script>
+  </body>
+</html>
